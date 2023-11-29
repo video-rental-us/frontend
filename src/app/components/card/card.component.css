@@ -1,0 +1,11 @@
+mat-card {
+  max-width: 40vw;
+  max-height: 400vh;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+
