@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { FilmsComponent } from './pages/films/films.component';
+import { FilmsComponent } from './films/films.component';
 import { RentalsComponent } from './pages/rentals/rentals.component';
 import { UsersComponent } from './pages/users/users.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
