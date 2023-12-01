@@ -1,17 +1,16 @@
 <mat-card class="card">
   <mat-card-header>
-    <img mat-card-avatar class="example-header-image" src={{photoPath}}/>
-    <mat-card-title>{{cardTitle}}</mat-card-title>
-    <mat-card-subtitle>{{cardUsername}}</mat-card-subtitle>
+    <img mat-card-avatar class="example-header-image" src="{{ photoPath }}" />
+    <mat-card-title>{{ cardTitle }}</mat-card-title>
+    <mat-card-subtitle>{{ cardUsername }}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src={{photoPath}} alt="Photo of Igor Szałas">
+  <img mat-card-image src="{{ photoPath }}" alt="Photo of Igor Szałas" />
   <mat-card-content>
     <p>
-      {{cardDescription}}
+      {{ cardDescription }}
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+    <a target="_blank" href="{{ link }}">Linkedin</a>
   </mat-card-actions>
 </mat-card>

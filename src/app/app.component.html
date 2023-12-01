@@ -14,9 +14,46 @@
 <mat-drawer-container class="navbar-container">
   <mat-drawer mode="side" *ngIf="open" opened="true">
     <div class="navbar-button-container">
-      <button mat-raised-button color="accent" routerLink="/films" routerLinkActive="active">Films</button>
-      <button mat-raised-button color="accent" routerLink="/rentals" routerLinkActive="active">Rents</button>
-      <button mat-raised-button color="accent" routerLink="/users" routerLinkActive="active">Users</button>
+      <button
+        mat-raised-button
+        color="accent"
+        routerLink="/films"
+        routerLinkActive="active"
+      >
+        Films
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        routerLink="/rentals"
+        routerLinkActive="active"
+      >
+        Rents
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        routerLink="/users"
+        routerLinkActive="active"
+      >
+        Users
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        routerLink="/register"
+        routerLinkActive="active"
+      >
+        Register
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        routerLink="/login"
+        routerLinkActive="active"
+      >
+        Login
+      </button>
     </div>
   </mat-drawer>
   <mat-drawer-content><router-outlet></router-outlet></mat-drawer-content>
