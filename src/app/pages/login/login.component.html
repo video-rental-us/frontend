@@ -1,12 +1,18 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>E-mail</mat-label>
-    <input matInput />
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Password</mat-label>
-    <input matInput type="password" />
-  </mat-form-field>
-</form>
-
-<button type="submit" mat-raised-button color="primary">Log in</button>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-actions align="end">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>E-mail</mat-label>
+        <input matInput />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" />
+      </mat-form-field>
+    </form>
+  </mat-card-actions>
+  <button type="submit" mat-raised-button color="primary">Log in</button>
+</mat-card>

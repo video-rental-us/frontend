@@ -11,3 +11,9 @@ mat-card {
 a {
   color: white;
 }
+
+.logo {
+  max-width: 50 px;
+  max-height: 50px;
+  margin: 15px;
+}

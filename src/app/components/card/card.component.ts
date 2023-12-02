@@ -15,6 +15,8 @@ export class CardComponent implements OnInit {
   @Input() cardTitle?: string;
   @Input() cardUsername?: string;
   @Input() link?: string;
+  @Input() facbook?: string;
+  @Input() github?: string
 
   constructor() {}
 
