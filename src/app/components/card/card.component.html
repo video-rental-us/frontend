@@ -1,0 +1,26 @@
+<mat-card class="card">
+  <mat-card-header>
+    <img mat-card-avatar class="example-header-image" src="{{ photoPath }}" />
+    <mat-card-title>{{ cardTitle }}</mat-card-title>
+    <mat-card-subtitle>{{ cardUsername }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{ photoPath }}" alt="Photo of Igor Szałas" />
+  <mat-card-content>
+    <p>
+      {{ cardDescription }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a target="_blank" href="{{ link }}"
+      ><img class="logo" src="../../../assets/linkedin_icon.png"
+    /></a>
+    <a target="_blank" href="{{ facbook }}"
+      ><img
+        class="logo"
+        src="../../../assets/facebook-2768151681.jpg"
+    /></a>
+    <a target="_blank" href="{{ github }}"
+      ><img class="logo" src="../../../assets/GitHub-Logo-1825704567.png"
+    /></a>
+  </mat-card-actions>
+</mat-card>

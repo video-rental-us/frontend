@@ -1,0 +1,19 @@
+mat-card {
+  max-width: 360px;
+  max-height: 370px;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+a {
+  color: white;
+}
+
+.logo {
+  max-width: 50 px;
+  max-height: 50px;
+  margin: 15px;
+}

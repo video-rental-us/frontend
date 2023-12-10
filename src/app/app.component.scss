@@ -1,0 +1,17 @@
+.navbar-container {
+  height: 95vh;
+}
+
+.navbar-button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin: 10px;
+}
+
+.app-name
+{
+  cursor:grabbing;
+}
