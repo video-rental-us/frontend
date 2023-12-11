@@ -1,28 +1,91 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
 import { UsersDataSource, UsersItem } from './users-datasource';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { UserService } from '../../services/users/user.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule]
+  imports: [
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatButtonModule,
+    MatCardModule,
+    ReactiveFormsModule,
+  ],
 })
-export class UsersComponent implements AfterViewInit {
+export class UsersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<UsersItem>;
-  dataSource = new UsersDataSource();
+  // @ViewChild(MatTable) table!: MatTable<FilmsItem>;
+  dataSource?: any;
+  tableData?: any;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  constructor(private readonly userService: UserService) {}
+  ngOnInit(): void {
+    this.fetchUsers();
+  }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  displayedColumns = [
+    'id',
+    'name',
+    'surname',
+    'address',
+    'telephone',
+    'registerData',
+    'editUser',
+    'deleteUser',
+  ];
+
+  fetchUsers() {
+    this.userService
+      .getAllUsers()
+      .pipe(first())
+      .subscribe((users: any) => {
+        this.tableData = users;
+        console.log(this.tableData);
+      });
+  }
+
+  editUser(userID: string) {
+    this.userService
+      .editUser(userID)
+      .pipe(first())
+      .subscribe(() => {});
+  }
+
+  deleteUser(userID: string) {
+    this.userService
+      .deleteUser(userID)
+      .pipe(first())
+      .subscribe(() => {});
+  }
+
+  addUser() {
+    this.userService
+      .addUser()
+      .pipe(first())
+      .subscribe(() => {});
+  }
+
+  searchUser(userSurname: string) {
+    this.userService.getUserBySurname(userSurname);
   }
 }

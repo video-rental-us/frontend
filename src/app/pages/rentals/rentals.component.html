@@ -1,26 +1,96 @@
-<div class="mat-elevation-z8">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
-    <!-- Id Column -->
+<div class="rentals-page">
+  <div class="search-module">
+    <mat-form-field>
+      <mat-label>Wyszukaj</mat-label>
+      <input #searchTitle matInput placeholder="Wyszukaj po tytule" />
+    </mat-form-field>
+    <button
+      mat-button
+      mat-raised-button
+      color="primary"
+      (click)="searchRentals(searchTitle.value)"
+    >
+      Wyszukaj
+    </button>
+    <button mat-button mat-raised-button color="primary">
+      Dodaj użykownika
+    </button>
+  </div>
+  <table
+    class="table-data"
+    mat-table
+    [dataSource]="tableData"
+    ngIf="tableData"
+    matSort
+    aria-label="Elements"
+  >
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
     </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    <ng-container matColumnDef="userData">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Imie i nazwisko</th>
+      <td mat-cell *matCellDef="let row">{{ row.userData }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="filmTitle">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tytuł filmu</th>
+      <td mat-cell *matCellDef="let row">{{ row.filmTitle }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="rentalDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Data wypożyczenia
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.rentalDate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="plannedReturnDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Data planowanego zwrotu
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.plannedReturnDate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="finalReturnDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Data ostatecznego zwrotu
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.finalReturnDate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="editRental">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          class="delete-button"
+          mat-button
+          mat-raised-button
+          color="primary"
+          (click)="editRental(row.id)"
+        >
+          Edytuj
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deleteRental">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          class="delete-button"
+          mat-button
+          mat-raised-button
+          color="primary"
+          (click)="deleteRental(row.id)"
+        >
+          Usuń
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-
-  <mat-paginator #paginator
-      [length]="dataSource.data.length"
-      [pageIndex]="0"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 20]"
-      aria-label="Select page">
-  </mat-paginator>
 </div>
