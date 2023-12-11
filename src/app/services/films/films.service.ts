@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { localAddress } from '../addresses';
 import { first } from 'rxjs';
@@ -9,7 +9,7 @@ import { first } from 'rxjs';
 export class FilmsService {
   constructor(private http: HttpClient) {}
 
-  getAllFilms():any {
-    this.http.get<any>(`${localAddress}/films`).pipe(first());
+  getAllFilms(): any {
+    return this.http.get<any>(`${localAddress}/films`);
   }
 }
