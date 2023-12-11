@@ -1,1 +1,1 @@
-export const localAddress: string = 'localhost:8080';
+export const localAddress: string = 'http://localhost:8080';
