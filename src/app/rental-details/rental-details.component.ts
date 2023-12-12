@@ -17,6 +17,7 @@ import {
 } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
 import { RentalService } from '../services/rentals/rental.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-rental-details',
@@ -73,8 +74,16 @@ export class RentalDetailsComponent {
   }
 
   addRent() {
-    let data = this.rentForm.value;
-    console.log('dodano');
+    console.log(this.dataSource);
+    let data = {
+      userData: this.rentForm.value.userName,
+      filmTitle: this.title,
+      rentalDate: moment().format('ddd MMM DD HH:mm:ss z YYYY'),
+      plannedReturnDate: moment(this.rentForm.value.dateControl).format(
+        'ddd MMM DD HH:mm:ss z YYYY'
+      ),
+    };
+    console.log('dodano', data);
     this.rentalService.addRental(data).subscribe(() => {});
   }
 }
