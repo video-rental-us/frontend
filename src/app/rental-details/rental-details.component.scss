@@ -1,0 +1,21 @@
+tr {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 30% 0 30%;
+  justify-content: center;
+}
+
+button {
+  width: 20rem;
+}
+
+.rentalDetails {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
