@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.1
       - run: |
-          echo 'export const localAddress: string = "http://sb-back:8080";' > src/app/services/addresses.ts
+          echo 'export const localAddress: string = "http://${{ secrets.SSH_HOST }}:8080";' > src/app/services/addresses.ts
       - uses: docker/setup-qemu-action@v3.0.0
       - name: Setup Docker Buildx
         id: buildx
