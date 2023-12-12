@@ -43,7 +43,7 @@ export class FilmsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<FilmsItem>;
   dataSource?: any;
-
+  title = 'My app';
   constructor(
     private filmsService: FilmsService,
     private formBuilder: FormBuilder,

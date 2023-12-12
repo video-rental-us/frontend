@@ -7,19 +7,7 @@ describe('FilmsComponent', () => {
   let component: FilmsComponent;
   let fixture: ComponentFixture<FilmsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule]
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FilmsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should compile', () => {
-    expect(component).toBeTruthy();
+  it('should have the correct title', () => {
+    expect(component.title).toBe('My app');
   });
 });

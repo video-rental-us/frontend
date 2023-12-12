@@ -38,7 +38,6 @@ export class RentalsComponent implements OnInit {
     'rentalDate',
     'plannedReturnDate',
     'finalReturnDate',
-    'editRental',
     'deleteRental',
   ];
   tableData?: any;
@@ -88,7 +87,17 @@ export class RentalsComponent implements OnInit {
     this.tableData = [...result];
   }
 
-  editRental(rentalID: string) {}
-
-  deleteRental(rentalID: string) {}
+  deleteRental(rentalID: string) {
+    if (rentalID) {
+      this.rentalService
+        .deleteRental(rentalID)
+        .pipe(first())
+        .subscribe((rent) => {
+          console.log(rent);
+          this.fetchRentals();
+        });
+    } else {
+      console.log(`Film ${rentalID} has undefined ID!`);
+    }
+  }
 }

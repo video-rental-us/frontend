@@ -36,4 +36,8 @@ export class FilmsService {
       params: filmIDParams,
     });
   }
+
+  getData(): string {
+    return 'Hello, World!';
+  }
 }

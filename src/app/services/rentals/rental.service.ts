@@ -15,4 +15,11 @@ export class RentalService {
   addRental(data: any): any {
     return this.http.post<any>(`${localAddress}/rentals`, data);
   }
+
+  deleteRental(id: any) {
+    let rentid = new HttpParams().set('id', id);
+    return this.http.delete<any>(`${localAddress}/deleteRent`, {
+      params: rentid,
+    });
+  }
 }

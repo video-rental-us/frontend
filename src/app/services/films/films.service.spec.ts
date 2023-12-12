@@ -5,12 +5,8 @@ import { FilmsService } from './films.service';
 describe('FilmsService', () => {
   let service: FilmsService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(FilmsService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should return the correct data', () => {
+    const result = service.getData();
+    expect(result).toBe('Hello, World!');
   });
 });
