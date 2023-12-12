@@ -11,6 +11,9 @@ jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: docker/setup-qemu-action@v3.0.0
