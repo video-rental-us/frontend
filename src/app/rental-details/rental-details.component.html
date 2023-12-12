@@ -1,26 +1,13 @@
+<div class="rentalDetails">
 <table class="table">
-  <tr>
-    <th>ID</th>
-    <th>Tytuł Filmu</th>
-    <th>Gatunek</th>
-    <th>Reżyser</th>
-    <th>czas trwania</th>
-    <th>ocena</th>
-    <th>opis</th>
-    <th>aktorzy</th>
-    <th>data dodania</th>
-  </tr>
-
   <tr *ngFor="let data of dataSource">
-    <td>{{ data.id }}</td>
-    <td>{{ data.filmTitle }}</td>
-    <td>{{ data.filmGenre }}</td>
-    <td>{{ data.Director }}</td>
-    <td>{{ data.plannedReturnDate }}</td>
-    <td>{{ data.rating }}</td>
-    <td>{{ data.finalReturnDate }}</td>
-    <td>{{ data.actors }}</td>
-    <td></td>
+    <th>ID : {{ data.id }}</th>
+    <th>Tytuł: {{ data.filmTitle }}</th>
+    <th>Gatunek: {{ data.filmGenre }}</th>
+    <th>Ocena: {{ data.rating }}</th>
+    <th>Opis: {{ data.finalReturnDate }}</th>
+    <th>Aktorzy: {{ data.actors }}</th>
+    <th></th>
   </tr>
 </table>
 <form [formGroup]="rentForm" (ngSubmit)="addRent()">
@@ -53,3 +40,4 @@
 
   <button type="submit" mat-raised-button color="primary">Rent</button>
 </form>
+</div>
