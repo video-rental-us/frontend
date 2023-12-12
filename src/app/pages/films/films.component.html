@@ -12,7 +12,12 @@
     >
       Wyszukaj
     </button>
-    <button mat-button mat-raised-button color="primary" (click)="openAddFilmDialog()">
+    <button
+      mat-button
+      mat-raised-button
+      color="primary"
+      (click)="openAddFilmDialog()"
+    >
       Dodaj film
     </button>
   </div>
@@ -92,6 +97,21 @@
           (click)="deleteFilm(row.id)"
         >
           Usuń
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rentFilm">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          class="add-button"
+          mat-button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/rent/', row.filmTitle]"
+        >
+          Wypożycz
         </button>
       </td>
     </ng-container>

@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, FormBuilder } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddNewFilmComponent } from '../../components/add-new-film/add-new-film.component';
 import { EditFilmComponent } from '../../components/edit-film/edit-film.component';
@@ -35,6 +35,7 @@ import { EditFilmComponent } from '../../components/edit-film/edit-film.componen
     MatButtonModule,
     MatCardModule,
     ReactiveFormsModule,
+    RouterModule,
   ],
 })
 export class FilmsComponent implements OnInit {
@@ -65,6 +66,7 @@ export class FilmsComponent implements OnInit {
     'videoAdditionDate',
     'editFilm',
     'deleteFilm',
+    'rentFilm',
   ];
   tableData?: any;
 

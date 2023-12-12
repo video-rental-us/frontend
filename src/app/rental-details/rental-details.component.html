@@ -1,0 +1,55 @@
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Tytuł Filmu</th>
+    <th>Gatunek</th>
+    <th>Reżyser</th>
+    <th>czas trwania</th>
+    <th>ocena</th>
+    <th>opis</th>
+    <th>aktorzy</th>
+    <th>data dodania</th>
+  </tr>
+
+  <tr *ngFor="let data of dataSource">
+    <td>{{ data.id }}</td>
+    <td>{{ data.filmTitle }}</td>
+    <td>{{ data.filmGenre }}</td>
+    <td>{{ data.Director }}</td>
+    <td>{{ data.plannedReturnDate }}</td>
+    <td>{{ data.rating }}</td>
+    <td>{{ data.finalReturnDate }}</td>
+    <td>{{ data.actors }}</td>
+    <td></td>
+  </tr>
+</table>
+<form [formGroup]="rentForm" (ngSubmit)="addRent()">
+  <mat-form-field>
+    <mat-label>Guest Name</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="userName"
+      placeholder="User Name and Surname"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Film Title</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="filmTitle"
+      placeholder="Film Title"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dateControl" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button type="submit" mat-raised-button color="primary">Rent</button>
+</form>

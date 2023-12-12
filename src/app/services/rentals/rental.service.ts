@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { localAddress } from '../addresses';
 
@@ -10,5 +10,9 @@ export class RentalService {
 
   getAllRentals(): any {
     return this.http.get<any>(`${localAddress}/rentals`);
+  }
+
+  addRental(data: any): any {
+    return this.http.post<any>(`${localAddress}/rentals`, data);
   }
 }
