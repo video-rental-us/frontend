@@ -15,6 +15,7 @@ import {
 import { UserService } from '../../services/users/user.service';
 import { first } from 'rxjs';
 import moment from 'moment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-new-user',
@@ -35,7 +36,11 @@ import moment from 'moment';
 export class AddNewUserComponent {
   addNewUserForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private snackBar: MatSnackBar
+  ) {
     this.addNewUserForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -45,7 +50,7 @@ export class AddNewUserComponent {
   }
 
   onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid);
+    if (!form.valid) this.snackBar.open('Podano błędne dane!', 'Okej');
     let user = form.value;
     user.registerDate = moment().format('ddd MMM DD HH:mm:ss z YYYY');
     form.valid && this.addUser(user);

@@ -15,6 +15,7 @@ import { MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-new-film',
@@ -35,7 +36,11 @@ import { MatInputModule } from '@angular/material/input';
 export class AddNewFilmComponent {
   addNewFilmForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private filmService: FilmsService) {
+  constructor(
+    private fb: FormBuilder,
+    private filmService: FilmsService,
+    private snackBar: MatSnackBar
+  ) {
     this.addNewFilmForm = this.fb.group({
       filmTitle: ['', Validators.required],
       director: ['', Validators.required],
@@ -47,7 +52,7 @@ export class AddNewFilmComponent {
   }
 
   onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid);
+    if (!form.valid) this.snackBar.open('Podano błędne dane!', 'Okej');
     let film = form.value;
     film.videoAdditionDate = moment().format('ddd MMM DD HH:mm:ss z YYYY');
     form.valid && this.addFilm(film);

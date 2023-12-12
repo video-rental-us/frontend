@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { first } from 'rxjs';
 import { UserService } from '../../services/users/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-user',
@@ -40,7 +41,8 @@ export class EditUserComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    @Inject(MAT_DIALOG_DATA) private data: any
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    private snackBar: MatSnackBar
   ) {
     console.log(data);
     let user = data.userData;
@@ -53,7 +55,7 @@ export class EditUserComponent {
   }
 
   onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid);
+    if (!form.valid) this.snackBar.open('Podano błędne dane!', 'Okej');
     let user = form.value;
     user.registerDate = this.data.userData.registerDate;
     form.valid && this.editUser(user);

@@ -19,6 +19,7 @@ import { UserService } from '../../services/users/user.service';
 import { FilmsService } from '../../services/films/films.service';
 import moment from 'moment';
 import { first } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-film',
@@ -42,7 +43,8 @@ export class EditFilmComponent {
   constructor(
     private fb: FormBuilder,
     private filmService: FilmsService,
-    @Inject(MAT_DIALOG_DATA) private data: any
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    private snackBar: MatSnackBar
   ) {
     console.log(data);
     let film = data.filmData;
@@ -57,7 +59,7 @@ export class EditFilmComponent {
   }
 
   onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid);
+    if (!form.valid) this.snackBar.open('Podano błędne dane!', 'Okej');
     let film = form.value;
     film.videoAdditionDate = this.data.filmData.videoAdditionDate;
     form.valid && this.editFilm(film);
