@@ -1,0 +1,24 @@
+<form [formGroup]="editUserForm">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Imie</mat-label>
+      <input matInput formControlName="firstName" placeholder="Podaj imie">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Nazwisko</mat-label>
+      <input matInput formControlName="lastName" placeholder="Podaj nazwisko">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Adres</mat-label>
+      <input matInput formControlName="homeAddress" placeholder="Podaj adres">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Telefon</mat-label>
+      <input matInput formControlName="phoneNumber" placeholder="Podaj numer telefonu">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>No</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="onSubmit(editUserForm)">Ok</button>
+  </div>
+</form>

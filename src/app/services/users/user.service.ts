@@ -19,9 +19,9 @@ export class UserService {
     });
   }
 
-  editUser(userID: string) {
+  editUser(userID: string, userData: any) {
     const userParams = new HttpParams().set('id', userID);
-    return this.http.put<any>(`${localAddress}/clients/edit-client`, {
+    return this.http.put<any>(`${localAddress}/clients/edit-client`, userData, {
       params: userParams,
     });
   }

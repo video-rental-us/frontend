@@ -14,6 +14,9 @@ import { FormsModule, FormBuilder } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AddNewFilmComponent } from '../../components/add-new-film/add-new-film.component';
+import { EditFilmComponent } from '../../components/edit-film/edit-film.component';
 
 @Component({
   selector: 'app-films',
@@ -43,7 +46,8 @@ export class FilmsComponent implements OnInit {
   constructor(
     private filmsService: FilmsService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   searchForm = this.formBuilder.group({
@@ -69,6 +73,12 @@ export class FilmsComponent implements OnInit {
     console.log(this.tableData);
   }
 
+  openAddFilmDialog() {
+    this.dialog.open(AddNewFilmComponent, {
+      width: '300px',
+    });
+    this.dialog.afterAllClosed.subscribe(() => this.fetchFilms());
+  }
   sortFilms(event: Sort) {
     console.log(event, this.tableData);
     let result = this.tableData.sort((a: any, b: any) => {
@@ -96,38 +106,25 @@ export class FilmsComponent implements OnInit {
       );
   }
 
-  searchFilms(searchFieldValue: string): any {
-    if (searchFieldValue) {
-      return this.filmsService
-        .getFilmsByTitle(searchFieldValue)
-        .pipe(first())
-        .subscribe(
-          (film: any) => (
-            (this.tableData = film),
-            console.log('searchFilms: ', this.tableData)
-          )
+  searchFilms(searchPhrase: string): any {
+    return this.filmsService
+      .getAllFilms()
+      .pipe(first())
+      .subscribe((films: any) => {
+        this.tableData = films.filter((film: any) =>
+          film.filmTitle.includes(searchPhrase)
         );
-    } else {
-      this.fetchFilms();
-    }
+      });
   }
 
-  editFilmPage(filmID: string) {
-    this.router.navigate([`/films/edit-film/${filmID}`]);
-  }
-
-  editFilm(filmID: string): any {
-    if (filmID) {
-      this.filmsService
-        .editFilmsByID(filmID)
-        .pipe(first())
-        .subscribe((film: any) => {
-          console.log(film);
-          this.fetchFilms();
-        });
-    } else {
-      console.log(`Film ${filmID} has undefined ID!`);
-    }
+  openEditFilmDialog(filmId: any) {
+    this.dialog.open(EditFilmComponent, {
+      width: '300px',
+      data: {
+        filmData: this.tableData[filmId],
+      },
+    });
+    this.dialog.afterAllClosed.subscribe(() => this.fetchFilms());
   }
 
   deleteFilm(filmID: string): any {

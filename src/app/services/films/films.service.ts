@@ -5,7 +5,6 @@ import { localAddress } from '../addresses';
 @Injectable({
   providedIn: 'root',
 })
-
 export class FilmsService {
   constructor(private http: HttpClient) {}
 
@@ -20,13 +19,15 @@ export class FilmsService {
     });
   }
 
-  addFilm():any{
-    return this.http.post<any>(`${localAddress}`,{})
+  addFilm(data: any): any {
+    return this.http.post<any>(`${localAddress}/films/add-film`, data);
   }
 
-  editFilmsByID(filmID: string): any{
-    let editFilmIDParams = new HttpParams().set('id', filmID)
-    let editFilmValues;
+  editFilmsByID(filmID: string, filmData: any): any {
+    let editFilmIDParams = new HttpParams().set('id', filmID);
+    return this.http.put<any>(`${localAddress}/films/edit-film`, filmData, {
+      params: editFilmIDParams,
+    });
   }
 
   deleteFilmsByID(filmID: string): any {

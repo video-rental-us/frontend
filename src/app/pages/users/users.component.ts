@@ -20,6 +20,7 @@ import {
   MatDialogContent,
 } from '@angular/material/dialog';
 import { AddNewUserComponent } from '../../components/add-new-user/add-new-user.component';
+import { EditUserComponent } from '../../components/edit-user/edit-user.component';
 
 @Component({
   selector: 'app-users',
@@ -73,6 +74,16 @@ export class UsersComponent implements OnInit {
     this.dialog.afterAllClosed.subscribe(() => this.fetchUsers());
   }
 
+  openEditUserDialog(userId: any) {
+    this.dialog.open(EditUserComponent, {
+      width: '300px',
+      data: {
+        userData: this.tableData[userId],
+      },
+    });
+    this.dialog.afterAllClosed.subscribe(() => this.fetchUsers());
+  }
+
   fetchUsers() {
     this.userService
       .getAllUsers()
@@ -99,13 +110,6 @@ export class UsersComponent implements OnInit {
     this.tableData = [...result];
   }
 
-  editUser(userID: string) {
-    this.userService
-      .editUser(userID)
-      .pipe(first())
-      .subscribe(() => {});
-  }
-
   deleteUser(userID: string) {
     this.userService
       .deleteUser(userID)
@@ -116,6 +120,14 @@ export class UsersComponent implements OnInit {
   }
 
   searchUser(userSurname: string) {
-    this.userService.getUserBySurname(userSurname);
+    this.userService
+      .getAllUsers()
+      .pipe(first())
+      .subscribe((users: any) => {
+        this.tableData = users.filter((user: any) =>
+          user.lastName.includes(userSurname)
+        );
+        console.log(this.tableData);
+      });
   }
 }

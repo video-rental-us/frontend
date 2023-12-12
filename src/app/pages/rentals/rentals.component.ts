@@ -46,7 +46,22 @@ export class RentalsComponent implements OnInit {
     this.fetchRentals();
     console.log(this.tableData);
   }
-  searchRentals(searchPhrase: string) {}
+  searchRentals(searchPhrase: string) {
+    return this.rentalService
+      .getAllRentals()
+      .pipe(first())
+      .subscribe((rentals: any) => {
+        this.tableData = rentals.filter((rent: any) => {
+          let result = false;
+          const keys = Object.keys(rent);
+          keys.forEach((key) => {
+            if (rent[key].includes(searchPhrase)) result = true;
+          });
+
+          return result;
+        });
+      });
+  }
 
   fetchRentals() {
     return this.rentalService
