@@ -22,6 +22,7 @@
     [dataSource]="tableData"
     ngIf="tableData"
     matSort
+    (matSortChange)="sortRentals($event)"
     aria-label="Elements"
   >
     <ng-container matColumnDef="id">

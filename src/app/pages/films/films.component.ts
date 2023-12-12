@@ -2,7 +2,7 @@ import { routes } from './../../app.routes';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
-import { MatSortModule, MatSort } from '@angular/material/sort';
+import { MatSortModule, MatSort, Sort } from '@angular/material/sort';
 import { FilmsItem } from './films-datasource';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -67,6 +67,22 @@ export class FilmsComponent implements OnInit {
   ngOnInit(): void {
     this.fetchFilms();
     console.log(this.tableData);
+  }
+
+  sortFilms(event: Sort) {
+    console.log(event, this.tableData);
+    let result = this.tableData.sort((a: any, b: any) => {
+      let res = 0;
+      if (a[event.active] < b[event.active]) {
+        res = -1;
+      } else if (a[event.active] > b[event.active]) {
+        res = 1;
+      }
+
+      return event.direction == 'asc' ? res : -res;
+    });
+
+    this.tableData = [...result];
   }
 
   fetchFilms(): any {

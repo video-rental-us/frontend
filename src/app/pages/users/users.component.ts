@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
-import { MatSortModule, MatSort } from '@angular/material/sort';
+import { MatSortModule, MatSort, Sort } from '@angular/material/sort';
 import { UsersDataSource, UsersItem } from './users-datasource';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -45,11 +45,11 @@ export class UsersComponent implements OnInit {
 
   displayedColumns = [
     'id',
-    'name',
-    'surname',
-    'address',
-    'telephone',
-    'registerData',
+    'firstName',
+    'lastName',
+    'homeAddress',
+    'phoneNumber',
+    'registerDate',
     'editUser',
     'deleteUser',
   ];
@@ -62,6 +62,22 @@ export class UsersComponent implements OnInit {
         this.tableData = users;
         console.log(this.tableData);
       });
+  }
+
+  sortUsers(event: Sort) {
+    console.log(event, this.tableData);
+    let result = this.tableData.sort((a: any, b: any) => {
+      let res = 0;
+      if (a[event.active] < b[event.active]) {
+        res = -1;
+      } else if (a[event.active] > b[event.active]) {
+        res = 1;
+      }
+
+      return event.direction == 'asc' ? res : -res;
+    });
+
+    this.tableData = [...result];
   }
 
   editUser(userID: string) {
