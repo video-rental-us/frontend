@@ -11,6 +11,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { UserService } from '../../services/users/user.service';
 import { first } from 'rxjs';
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
+import { AddNewUserComponent } from '../../components/add-new-user/add-new-user.component';
 
 @Component({
   selector: 'app-users',
@@ -38,7 +47,10 @@ export class UsersComponent implements OnInit {
   dataSource?: any;
   tableData?: any;
 
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    public dialog: MatDialog
+  ) {}
   ngOnInit(): void {
     this.fetchUsers();
   }
@@ -53,6 +65,13 @@ export class UsersComponent implements OnInit {
     'editUser',
     'deleteUser',
   ];
+
+  openAddUserDialog() {
+    this.dialog.open(AddNewUserComponent, {
+      width: '300px',
+    });
+    this.dialog.afterAllClosed.subscribe(() => this.fetchUsers());
+  }
 
   fetchUsers() {
     this.userService
@@ -91,14 +110,9 @@ export class UsersComponent implements OnInit {
     this.userService
       .deleteUser(userID)
       .pipe(first())
-      .subscribe(() => {});
-  }
-
-  addUser() {
-    this.userService
-      .addUser()
-      .pipe(first())
-      .subscribe(() => {});
+      .subscribe(() => {
+        this.fetchUsers();
+      });
   }
 
   searchUser(userSurname: string) {

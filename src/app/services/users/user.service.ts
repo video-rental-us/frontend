@@ -8,8 +8,8 @@ import { localAddress } from '../addresses';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  addUser() {
-    return this.http.post<any>(`${localAddress}/clients/add-client`, {});
+  addUser(data: any) {
+    return this.http.post<any>(`${localAddress}/clients/add-client`, data);
   }
 
   deleteUser(userID: string) {
