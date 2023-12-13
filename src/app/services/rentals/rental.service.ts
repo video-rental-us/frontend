@@ -17,7 +17,7 @@ export class RentalService {
   }
 
   deleteRental(id: any) {
-    let rentid = new HttpParams().set('id', id);
+    let rentid = new HttpParams().set('rentId', id);
     return this.http.delete<any>(`${localAddress}/deleteRent`, {
       params: rentid,
     });
