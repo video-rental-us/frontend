@@ -37,7 +37,6 @@ export class RentalsComponent implements OnInit {
     'filmTitle',
     'rentalDate',
     'plannedReturnDate',
-    'finalReturnDate',
     'deleteRental',
   ];
   tableData?: any;
@@ -54,6 +53,7 @@ export class RentalsComponent implements OnInit {
           let result = false;
           const keys = Object.keys(rent);
           keys.forEach((key) => {
+            if (!rent[key]) return;
             if (rent[key].includes(searchPhrase)) result = true;
           });
 
